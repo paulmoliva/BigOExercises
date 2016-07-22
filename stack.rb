@@ -7,6 +7,11 @@ class MyStack
   end
 
   def pop
+    if @stack.last == @max.last
+      @max.pop
+    elsif @stack.last == @min.last
+      @min.pop
+    end
     @stack.pop
   end
 
@@ -14,6 +19,14 @@ class MyStack
     @stack.push(item)
     @max << item if item >= @max
     @min << item if item <= @min
+  end
+
+  def max
+    @max.last
+  end
+
+  def min
+    @min.last
   end
 
   def peek
@@ -50,6 +63,14 @@ class StackQueue
   def dequeue
     raise 'stack is empty' if @stack1.empty?
     @stack1.pop
+  end
+
+  def max
+    @stack1.max
+  end
+
+  def min
+    @stack1.min
   end
 
 
