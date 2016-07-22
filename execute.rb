@@ -1,3 +1,5 @@
+require_relative 'stack.rb'
+
 def my_min(array)
   array.each do |el|
     return el if array.all? { |jel| jel >= el }
@@ -183,13 +185,20 @@ end
 
 
 def windowed_max_range(array, w)
-  result = []
-  (array.length - 1).times do |i|
-    slice = array.slice(i,w)
-    slice = (slice.max - slice.min)
-    result << slice
+  result = StackQueue.new
+  (array.length - (w-1)).times do |i|
+    slice = StackQueue.new
+    intermediate_arr = array.slice(i,w)
+    #p intermediate_arr
+    intermediate_arr.each do |el|
+      #p "enqueing #{el}"
+      slice.enqueue(el)
+    end
+    range = (slice.max - slice.min)
+    #p "#{slice.max} - #{slice.min} = #{range}"
+    result.enqueue(range)
   end
-  result.max
+  p result.max
 end
 
 p windowed_max_range([1, 0, 2, 5, 4, 8], 2) == 4 # 4, 8

@@ -1,51 +1,11 @@
-class MyStack
+require 'byebug'
+require_relative 'my_stack.rb'
 
-  def initialize
-    @stack = []
-    @max = []
-    @min = []
-  end
-
-  def pop
-    if @stack.last == @max.last
-      @max.pop
-    elsif @stack.last == @min.last
-      @min.pop
-    end
-    @stack.pop
-  end
-
-  def push(item)
-    @stack.push(item)
-    @max << item if item >= @max
-    @min << item if item <= @min
-  end
-
-  def max
-    @max.last
-  end
-
-  def min
-    @min.last
-  end
-
-  def peek
-    @stack.last
-  end
-
-  def size
-    @stack.length
-  end
-
-  def empty?
-    @stack.empty?
-  end
-end
 
 persons = [1,2,3]
 class StackQueue
-
-  def intitialize
+  attr_reader :stack1
+  def initialize
     @stack1 = MyStack.new
     @stack2 = MyStack.new
   end
@@ -73,6 +33,9 @@ class StackQueue
     @stack1.min
   end
 
+  def empty?
+    @stack1.empty?
+  end
 
 
 end
